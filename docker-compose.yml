@@ -1,0 +1,68 @@
+version: "3.9"
+
+services:
+
+  python-postgres:
+    container_name: python-postgres
+    image: postgres
+    env_file: .env
+    environment:
+      - POSTGRES_DB=${DB_DATABASE}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - PGDATA=/data/postgres
+    volumes:
+      - ./constructor.sql:/docker-entrypoint-initdb.d/constructor.sql
+      - ./postgres-data:/data/postgres
+    ports:
+      - "${DB_PORT}:5432"
+    networks:
+      - main
+    restart: unless-stopped
+
+  python-api:
+    container_name: python-api
+    restart: always 
+    build: .
+    env_file: .env
+    cap_add:
+      - SYS_NICE
+    ports:
+      - 8000:8000
+    networks:
+      - main
+
+  python-nginx:
+    container_name: python-nginx
+    image: nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+    links:
+      - python-api:python-api
+    depends_on:
+      - python-api
+    volumes:
+      - ./nginx/configs/common_location.conf:/etc/nginx/common_location.conf
+      - ./nginx/configs/common.conf:/etc/nginx/common.conf
+      - ./nginx/configs/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/security/keys/:/ssl/
+      - ./client/:/usr/share/nginx/html
+    networks:
+      - main
+
+  ngrok:
+      image: wernight/ngrok
+      restart: always 
+      volumes:
+        - ./ngrok.yml:/home/ngrok/.ngrok2/ngrok.yml
+      ports:
+        - "4040:4040"
+      command: ["ngrok", "http", "aidols-server:80"]
+      networks:
+        - main
+
+networks:
+  main:
+    driver: bridge

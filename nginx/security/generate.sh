@@ -1,0 +1,1 @@
+openssl req -x509 -newkey rsa:4096 -config req.cnf -keyout ./keys/key.pem -out ./keys/cert.pem -sha256

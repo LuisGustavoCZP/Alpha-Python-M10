@@ -1,0 +1,1 @@
+openssl rsa < ./keys/key.pem > ./keys/key-rsa.pem

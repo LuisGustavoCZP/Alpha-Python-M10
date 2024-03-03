@@ -1,0 +1,43 @@
+Imagine que chamaram você e a sua equipe para desenvolver um novo projeto;
+Neste projeto sua equipe foi escolhida para desenvolver o banco de dados.
+Então vocês ficaram responsáveis por analisar e criar as estruturas do
+banco de dados a partir do texto que será passado a seguir:
+
+O sistema desafios para os aspirantes, busca a automação
+e a melhoria na dinamica da criação e gerenciamento dos
+desafios da edtech.
+
+Neles os aspirantes e professores
+podem ter uma melhor experiencia, podendo sugerir os temas  
+de projetos e também votar nos temas e projetos que lhe despertarem
+maior interesse.
+
+O sistema também deve fazer o gerenciamento
+das equipes, escolhendo os alunos e iniciando votações
+internas para escolher o lider e o nome do projeto.
+
+
+    - Nosso sistema terá como usuários professores e aspirantes;
+
+    - Equipes devem ter tamanhos definidos pelo professor, e (a partir dos
+    aspirantes participantes) os integrantes serão escolhidos de forma aleatória;
+
+    - Ao ser sorteada a equipe, o sistema iniciará uma votação entre os membros
+    da equipe para escolher o lider da equipe;
+
+    - Os temas dos projetos são propostos pelos usuários;
+
+    - Usuários votarão nos projetos e com base na votação são selecionados
+    os temas possíveis, que serão então sorteados de forma aleatória para as equipes;
+
+    - Ao ser escolhido o tema para a equipe, o sistema iniciará uma votação entre os membros
+    da equipe para escolher o nome do projeto;
+
+    - Ao ser escolhido o nome do projeto, o lider da equipe deve criar um repositório no github
+    e indicar o link do projeto;
+
+    - Terminado o projeto, o sistema permitirá os usuários votarem nos projetos
+    que mais gostaram;
+
+    - Cada votação poderá ter apenas um voto de cada usuário.
+

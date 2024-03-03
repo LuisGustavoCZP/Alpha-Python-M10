@@ -1,0 +1,17 @@
+[req]
+distinguished_name = test
+x509_extensions = v3_req
+prompt = no
+[test]
+C = BR
+ST = Parana
+L = Foz do Iguaçu
+O = test
+CN = test
+[v3_req]
+keyUsage = critical, digitalSignature, keyAgreement
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = localhost
+DNS.2 = 127.0.0.1
